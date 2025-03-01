@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package order; // Không dùng dấu `.`
+
+option java_package = "org.example.gRPC";
+option java_multiple_files = true;
+
+message OrderRequest {
+  string product_id = 1;  // Đổi từ order_id thành product_id
+  int32 quantity = 2;
+}
+
+message OrderResponse {
+  double total_price = 1; // Đổi totalPrice -> total_price (theo chuẩn proto3)
+}
+
+service OrderService {
+  rpc CalculateTotal(OrderRequest) returns (OrderResponse);
+}
